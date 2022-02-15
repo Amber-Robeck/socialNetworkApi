@@ -15,6 +15,13 @@ connection.once('open', async () => {
 
     //data for users
     //TODO: thoughts and reactions
+    //"_id": "620b4566542b7f265c33ab9a",
+    // "username": "test4",
+    // "email": "test4@test.com",
+    // "thoughts": [],
+    // "friends": [
+    // 	"620b04f9bcff0d8368746962"
+    // ],
     const users = [{ username: "test1", email: "test1@test.com" }, { username: "test2", email: "test2@test.com" }, { username: "test3", email: "test3@test.com" }];
     const thoughts = [{ username: "testing1", thoughtText: "still just testing one" }, { username: "testing2", thoughtText: "still just testing two" }, { username: "testing3", thoughtText: "still just testing three" }]
 
