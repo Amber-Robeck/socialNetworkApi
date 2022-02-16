@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction')
 
 // Schema to create user model
 const thoughtSchema = new Schema(
@@ -17,7 +18,7 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        // reactions: [reactionSchema],
+        reactions: [reactionSchema],
 
     },
     {
@@ -27,6 +28,10 @@ const thoughtSchema = new Schema(
         id: false,
     }
 );
+thoughtSchema.virtual('reactionCount').get(function () {
+    return this.reactions.length;
+});
+
 
 const Thought = model('thought', thoughtSchema);
 
