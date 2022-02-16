@@ -22,7 +22,16 @@ module.exports = {
     //Thought create
     createThought(req, res) {
         Thought.create(req.body)
-            .then((thought) => res.json(thought))
+            .then(function (response) {
+                console.log(response._id.valueOf())
+                console.log(req.body.userId)
+                User.findOneAndUpdate(
+                    { _id: req.body.userId },
+                    { $addToSet: { thoughts: response._id.valueOf() } },
+                    { runValidators: true, new: true }
+                ).then(() => res.json({ message: 'Thought was added!' }))
+            })
+
             .catch((err) => {
                 console.log(err);
                 return res.status(500).json(err);
