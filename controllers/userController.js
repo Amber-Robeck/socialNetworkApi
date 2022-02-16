@@ -34,6 +34,20 @@ module.exports = {
             .then(() => res.json({ message: 'User was deleted!' }))
             .catch((err) => res.status(500).json(err));
     },
+
+    updateUser(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'Could not find user with this id!' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
     // Add a friend
     // needs to have a friend key in object or always returns error
     addFriend(req, res) {
