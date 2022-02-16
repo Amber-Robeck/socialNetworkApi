@@ -29,7 +29,7 @@ module.exports = {
                     { _id: req.body.userId },
                     { $addToSet: { thoughts: response._id.valueOf() } },
                     { runValidators: true, new: true }
-                ).then(() => res.json({ message: 'Thought was added!' }))
+                ).then(() => res.json(response))
             })
 
             .catch((err) => {
