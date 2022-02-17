@@ -36,9 +36,18 @@ This application:
   ---
 
   ## Usage
-Use this how you see fit to save information onto the database!
+Use this how you see fit to save information onto the database! 
 
-  ---
+Currently this application is able to:
+* Create, read, update and delete a User
+* Add and delete a friend to user
+* Create, read, update and delete a Thought
+* Add and delete a reaction to the thoughts
+* Newly added functionality-Deleting users associated thoughts and deleting user from associated Users friends list
+
+
+
+---
 
   ## Installation
 
@@ -60,13 +69,16 @@ Coming soon!
 
 Here are some screen shots of this application.
 
-Coming soon!
 
-<img src="" alt="screenshot of GET method" width="700"/>
+<img src="./assets/allUsers.png" alt="screenshot of GET method" width="700"/>
 
-<img src="" alt="screenshot of POST method" width="700"/>
+<img src="./assets/createThought.png" alt="screenshot of POST method" width="700"/>
 
-<img src="" alt="screenshot of GET method" width="700"/>
+<img src="./assets/socialAPI.png" alt="screenshot of MongoCompass" width="700"/>
+
+<img src="./assets/socialAPIusers.png" alt="screenshot of MongoCompass" width="700"/>
+
+<img src="./assets/socialAPIthoughts.png" alt="screenshot of MongoCompass" width="700"/>
 
 
     
