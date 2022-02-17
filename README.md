@@ -11,7 +11,6 @@
 <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
 <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
 <img src="https://img.shields.io/badge/Insomnia-5849be?style=for-the-badge&logo=Insomnia&logoColor=white" />
-<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" />
 </p>
 
  ## Description
@@ -57,11 +56,14 @@ This project is ran through Node.js, clone the repo and install the required dep
 
   ## Walk-through
 
-Here is a link to the walk through video to show functionality of the application
+Here is a [link]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video") to the walk through video to show functionality of the application [link to whole video.]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video")
 
-Coming soon!
 
-[link to whole video]( "Whole walkthrough video")
+
+Here is a GIF of starting server, connecting to the database and adding a user
+
+![GIF of page](./assets/appStart.gif "GIF of page")
+
 
   ---
 
