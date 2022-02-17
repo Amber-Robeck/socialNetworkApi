@@ -2,12 +2,6 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction')
 const moment = require('moment');
 
-// const dateString = function () {
-//     const d = new Date()
-//     return d.toDateString()
-// }
-// console.log(dateString())
-// Schema to create user model
 const thoughtSchema = new Schema(
     {
         username: {
@@ -24,7 +18,6 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
             get: (created) => moment(created).format('LLLL')
-            // get: dateString
         },
         reactions: [reactionSchema],
 
