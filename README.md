@@ -50,7 +50,30 @@ Currently this application is able to:
 
   ## Installation
 
-This project is ran through Node.js, clone the repo and install the required dependencies with npm. 
+This project is ran through Node.js, using an express server.
+* `clone the repository` 
+*  `npm install` in the command line to install the required dependencies. 
+*  open in the terminal and then `npm run start` to start the server!
+*  The server will start on `localhost:3001`
+
+Routes are as follows:
+* User Routes
+
+`/api/users` to GET all users, PUT to update user NOTE: Will update fields passed in req.body. POST a new user NOTE: req.body needs to have two keys username and email.
+
+`/api/users/:userId` to GET and DELETE single user NOTE: req.params needs to include users __id.
+
+`/api/users/:userId/friends` to POST a new friend NOTE: req.body needs to include friends key and passing a current users __id.
+
+`/api/users/:userId/friends/:friendId` to DELETE a friend. NOTE: req.params needs two users __id passed, first for the user to delete from and second for friend to delete.
+
+* Thought Routes
+
+`/api/thoughts` to GET all thoughts, POST a new thought NOTE: req.body needs to have two keys thoughtText and username, also if you would like to tie it to a current user you will need to also include userId with a current user __id.
+
+`/api/thoughts/:thoughtId` to GET and DELETE thoughts. NOTE: req.params needs to include a thoughts __id.
+
+`/api/thoughts/:thoughtId/reactions` to POST and DELETE reactions. NOTE:  for posting req.params needs a current thought __id and req.body needs reactionBody and username. For deleting a thought req.params is the same however req.body needs a reactionId.
 
   ---
 
@@ -124,14 +147,14 @@ SOFTWARE.
 
   ## Questions
 
-https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+
+[![email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:arr5533@gmail.com)
 
 
-  Contact me here:   arr5533@gmail.com
 
 * OR here
 
- [Amber Robeck](https://github.com/Amber-Robeck)
+ [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Amber-Robeck)
 
 * OR here
 
