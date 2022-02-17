@@ -123,10 +123,11 @@ SOFTWARE.
   ---
 
   ## Questions
-[![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
-)](href:"mailto:arr5533@gmail.com") 
 
-https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white
+
+[![email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](href="mailto:arr5533@gmail.com")
+
+
 
 
   Contact me here:   arr5533@gmail.com
