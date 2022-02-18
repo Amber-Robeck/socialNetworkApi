@@ -79,12 +79,12 @@ Routes are as follows:
 
   ## Walk-through
 
-Here is a [link]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video") 
+Here is a ![link]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video") 
 
 to the walk through video to show functionality of the application 
 
 
-[link to whole video.]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video")
+![link to whole video.]("https://drive.google.com/file/d/14juWMlXPZcEFJxKtYIaWEISC7UbXNMNy/preview" "Whole walkthrough video")
 
 
 
