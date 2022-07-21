@@ -25,7 +25,7 @@ module.exports = {
     // get single thought
     getSingleThought(req, res) {
         // getData(req, res, Thought.findById(req.params.id));
-        getData(req, res, Thought.findOne({ _id: req.params.thoughtId }));
+        getData(req, res, Thought.findOne({ _id: req.params.thoughtId }), 'Could not find thought with that ID');
 
 
         // Thought.findOne({ _id: req.params.thoughtId })

@@ -6,7 +6,7 @@ module.exports = {
     //         .catch((err) => res.status(500).json(err));
     // }
 
-    getData(req, res, modelAction, optionalUpdate) {
+    getData(req, res, modelAction, optionalErrorMessage, optionalUpdate) {
         if (optionalUpdate) {
             modelAction
                 .then((req) => {
@@ -21,7 +21,7 @@ module.exports = {
                 })
                 .then((dataTwo) =>
                     !dataTwo
-                        ? res.status(404).json({ message: 'Could not find data with that ID' })
+                        ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
                         : res.json(dataTwo)
                 )
                 .catch((err) => res.status(500).json(err));
@@ -29,7 +29,7 @@ module.exports = {
             modelAction
                 .then((dataTwo) =>
                     !dataTwo
-                        ? res.status(404).json({ message: 'Could not find data with that ID' })
+                        ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
                         : res.json(dataTwo)
                 )
                 .catch((err) => res.status(500).json(err));
