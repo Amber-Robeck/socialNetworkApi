@@ -6,7 +6,7 @@ module.exports = {
     //         .catch((err) => res.status(500).json(err));
     // }
 
-    getData(req, res, modelAction, optionalErrorMessage, optionalUpdate) {
+    getData(req, res, modelAction, optionalErrorMessage, optionalSuccessMessage, optionalUpdate) {
         if (optionalUpdate) {
             modelAction
                 .then((req) => {
@@ -19,18 +19,18 @@ module.exports = {
                     // console.log(need);
                     return optionalUpdate;
                 })
-                .then((dataTwo) =>
-                    !dataTwo
+                .then((data) =>
+                    !data
                         ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
-                        : res.json(dataTwo)
+                        : res.json({ message: optionalSuccessMessage, data })
                 )
                 .catch((err) => res.status(500).json(err));
         } else {
             modelAction
-                .then((dataTwo) =>
-                    !dataTwo
+                .then((data) =>
+                    !data
                         ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
-                        : res.json(dataTwo)
+                        : res.json({ message: optionalSuccessMessage, data })
                 )
                 .catch((err) => res.status(500).json(err));
 
