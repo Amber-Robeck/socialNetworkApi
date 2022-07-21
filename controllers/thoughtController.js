@@ -1,12 +1,19 @@
 const { User, Thought, } = require('../models');
-
+// const getData = require('./testController').getData;
+const getData = (req, res, modelAction) => {
+    modelAction
+        .then((data) => res.json(data))
+        .catch((err) => res.status(500).json(err));
+}
 
 module.exports = {
+    // getData(req, res, Thought)
     // Get all thoughts
-    getThought(req, res) {
-        Thought.find()
-            .then((thoughts) => res.json(thoughts))
-            .catch((err) => res.status(500).json(err));
+    getThought(req, res,) {
+        getData(req, res, Thought.find());
+        // Thought.find()
+        //     .then((thoughts) => res.json(thoughts))
+        //     .catch((err) => res.status(500).json(err));
     },
     // get single thought
     getSingleThought(req, res) {
@@ -23,8 +30,8 @@ module.exports = {
     createThought(req, res) {
         Thought.create(req.body)
             .then(function (response) {
-                console.log(response._id.valueOf())
-                console.log(req.body.userId)
+                // console.log(response._id.valueOf())
+                // console.log(req.body.userId)
                 User.findOneAndUpdate(
                     { _id: req.body.userId },
                     { $addToSet: { thoughts: response._id.valueOf() } },
@@ -56,14 +63,15 @@ module.exports = {
 
     // Delete thought
     deleteThought(req, res) {
+        // console.log('You are deleting a thought');
         Thought.findOneAndDelete({ _id: req.params.thoughtId })
             .then(() => res.json({ message: 'Thought was deleted!' }))
             .catch((err) => res.status(500).json(err));
     },
 
     createReaction(req, res) {
-        console.log('You are adding a new reaction');
-        console.log(req.params);
+        // console.log('You are adding a new reaction');
+        // console.log(req.params);
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $addToSet: { reactions: req.body } },
@@ -80,7 +88,7 @@ module.exports = {
     },
     // Delete reaction
     deleteReaction(req, res) {
-        console.log("You deleted a reaction!")
+        // console.log("You deleted a reaction!")
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $pull: { reactions: { reactionId: req.body.reactionId } } },
