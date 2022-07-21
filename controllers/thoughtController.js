@@ -1,19 +1,22 @@
+const { deprecationHandler } = require('moment');
 const { User, Thought, } = require('../models');
+const { getData } = require('./testController');
+
 // const getData = require('./testController').getData;
-const getData = (req, res, modelAction) => {
-    modelAction
-        .then((data) =>
-            !data
-                ? res.status(404).json({ message: 'Could not find data with that ID' })
-                : res.json(data)
-        )
-        .catch((err) => res.status(500).json(err));
-}
+// const getData = (req, res, modelAction) => {
+//     modelAction
+//         .then((data) =>
+//             !data
+//                 ? res.status(404).json({ message: 'Could not find data with that ID' })
+//                 : res.json(data)
+//         )
+//         .catch((err) => res.status(500).json(err));
+// }
 
 module.exports = {
     // getData(req, res, Thought)
     // Get all thoughts
-    getThought(req, res,) {
+    getThought(req, res) {
         getData(req, res, Thought.find());
         // Thought.find()
         //     .then((thoughts) => res.json(thoughts))
@@ -36,22 +39,52 @@ module.exports = {
     },
     //Thought create
     createThought(req, res) {
-        Thought.create(req.body)
-            .then(function (response) {
-                // console.log(response._id.valueOf())
-                // console.log(req.body.userId)
-                User.findOneAndUpdate(
-                    { _id: req.body.userId },
-                    { $addToSet: { thoughts: response._id.valueOf() } },
-                    { runValidators: true, new: true }
-                ).then(() => res.json(response))
-            })
+        // let originalData = req._id.valueOf();
+        getData(req, res, Thought.create(req.body), User.findOneAndUpdate(
+            { _id: req.body.userId },
+            { $push: { thoughts: originalData } },
+            { new: true }
+        ));
+        // getData(req, res, Thought.create(req.body).then(function (response) {
+        //     getData(req, res, User.findOneAndUpdate(
+        //         { _id: req.body.userId },
+        //         { $addToSet: { thoughts: response._id.valueOf() } },
+        //         { runValidators: true, new: true }
+        //     ))
+        // }))
+        // User.findOneAndUpdate(
+        //     { _id: req.body.userId },
+        //     { $addToSet: { thoughts: response._id.valueOf() } },
+        //     { runValidators: true, new: true }
+        // )
 
-            .catch((err) => {
-                console.log(err);
-                return res.status(500).json(err);
-            });
+
+        // )
+        // .then(function (response) {
+        //     getData(req, res, User.findOneAndUpdate(
+        //         { _id: req.body.userId },
+        //         { $addToSet: { thoughts: response._id.valueOf() } },
+        //         { runValidators: true, new: true }
+        //     ));
+
+        // }
+        // )
     },
+    // Thought.create(req.body)
+    //     .then(function (response) {
+    //         // console.log(response._id.valueOf())
+    //         // console.log(req.body.userId)
+    //         User.findOneAndUpdate(
+    //             { _id: req.body.userId },
+    //             { $addToSet: { thoughts: response._id.valueOf() } },
+    //             { runValidators: true, new: true }
+    //         ).then(() => res.json(response))
+    //     })
+
+    //     .catch((err) => {
+    //         console.log(err);
+    //         return res.status(500).json(err);
+    //     });
 
     //update thought through thoughtId in params and set to req.body
     updateThought(req, res) {
