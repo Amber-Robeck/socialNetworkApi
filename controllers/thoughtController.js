@@ -2,7 +2,11 @@ const { User, Thought, } = require('../models');
 // const getData = require('./testController').getData;
 const getData = (req, res, modelAction) => {
     modelAction
-        .then((data) => res.json(data))
+        .then((data) =>
+            !data
+                ? res.status(404).json({ message: 'Could not find data with that ID' })
+                : res.json(data)
+        )
         .catch((err) => res.status(500).json(err));
 }
 
@@ -17,14 +21,18 @@ module.exports = {
     },
     // get single thought
     getSingleThought(req, res) {
-        Thought.findOne({ _id: req.params.thoughtId })
-            // .select('-__v')
-            .then((thought) =>
-                !thought
-                    ? res.status(404).json({ message: 'Could not find a thought with that ID' })
-                    : res.json(thought)
-            )
-            .catch((err) => res.status(500).json(err));
+        // getData(req, res, Thought.findById(req.params.id));
+        getData(req, res, Thought.findOne({ _id: req.params.thoughtId }));
+
+
+        // Thought.findOne({ _id: req.params.thoughtId })
+        //     // .select('-__v')
+        //     .then((thought) =>
+        //         !thought
+        //             ? res.status(404).json({ message: 'Could not find a thought with that ID' })
+        //             : res.json(thought)
+        //     )
+        //     .catch((err) => res.status(500).json(err));
     },
     //Thought create
     createThought(req, res) {
