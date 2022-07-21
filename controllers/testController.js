@@ -30,7 +30,7 @@ module.exports = {
                 .then((data) =>
                     !data
                         ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
-                        : res.json({ message: optionalSuccessMessage, data })
+                        : res.json(!optionalSuccessMessage ? data : { message: optionalSuccessMessage, data })
                 )
                 .catch((err) => res.status(500).json(err));
 
