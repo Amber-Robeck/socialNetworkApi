@@ -1,14 +1,15 @@
 const { User, Thought, } = require('../models');
 const { getData } = require('./testController');
+const gooseHelper = require('goose-helper');
 
 module.exports = {
     // Get all thoughts
     getThought(req, res) {
-        getData(req, res, Thought.find());
+        gooseHelper(req, res, Thought.find());
     },
     // get single thought
     getSingleThought(req, res) {
-        getData(req, res, Thought.findOne({ _id: req.params.thoughtId }), 'Could not find thought with that ID');
+        gooseHelper(req, res, Thought.findOne({ _id: req.params.thoughtId }), 'Could not find thought with that ID');
     },
     //Thought create
     createThought(req, res) {
@@ -61,20 +62,20 @@ module.exports = {
     },
     //update thought through thoughtId in params and set to req.body
     updateThought(req, res) {
-        getData(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { new: true }), 'Could not find thought with that ID');
+        gooseHelper(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { new: true }), 'Could not find thought with that ID');
     },
 
 
     // Delete thought
     deleteThought(req, res) {
-        getData(req, res, Thought.findOneAndDelete({ _id: req.params.thoughtId }), 'Could not find thought with that ID', 'Your thought has been deleted');
+        gooseHelper(req, res, Thought.findOneAndDelete({ _id: req.params.thoughtId }), 'Could not find thought with that ID', 'Your thought has been deleted');
     },
     // Create reaction
     createReaction(req, res) {
-        getData(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $addToSet: { reactions: req.body } }, { new: true }), 'Could not find thought with that ID');
+        gooseHelper(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $addToSet: { reactions: req.body } }, { new: true }), 'Could not find thought with that ID');
     },
     // Delete reaction
     deleteReaction(req, res) {
-        getData(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $pull: { reactions: { _id: req.body.reactionId } } }, { new: true }), 'Could not find thought with that ID', 'Your reaction has been deleted');
+        gooseHelper(req, res, Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $pull: { reactions: { _id: req.body.reactionId } } }, { new: true }), 'Could not find thought with that ID', 'Your reaction has been deleted');
     }
 }
