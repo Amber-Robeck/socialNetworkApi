@@ -44,11 +44,11 @@ module.exports = {
 
         // }
         // )
-
+        // let idValue = response._id.valueOf();
         getData(req, res, Thought.create(req.body), "failed", "Success", User.findOneAndUpdate(
-            { _id: req.body.userId },
+            { username: req.body.username },
             { $push: { thoughts: response._id.valueOf() } },
-            { runValidators: true, new: true }
+            { new: true }
         ));
 
         // Thought.create(req.body)

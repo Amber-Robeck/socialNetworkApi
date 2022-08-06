@@ -3,20 +3,46 @@ module.exports = {
     getData(req, res, modelAction, optionalErrorMessage, optionalSuccessMessage, optionalUpdate) {
         if (optionalUpdate) {
             modelAction
-                .then(function (response) {
-                    // console.log(response);
-                    console.log("req", response._id);
-                    console.log("req.body.userId: " + req.body.userId);
-                    // console.log("optional", optionalUpdate)
-
+                .then((response) => {
+                    console.log(response.username)
                     return optionalUpdate
-                        .then((data) =>
-                            !data
-                                ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
-                                : res.json({ message: optionalSuccessMessage, data })
-                        )
                 })
-                .catch((err) => res.status(500).json(err));
+                .then((dbUserData) => {
+                    if (!dbUserData) {
+                        return res.status(404).json({ message: 'Thought created but no user with this id!' });
+                    }
+
+                    res.json({ message: 'Thought successfully created!' });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).json(err);
+                });
+
+
+            //                     // let idValue = response._id.valueOf();
+            //                     // console.log(idValue)
+            //                     // console.log(response._id)
+            //                     // await optionalUpdate
+
+            //                         //     .then(function (response) {
+            //                         //         res.json(response);
+            //                         //     }).catch(function (err) {
+            //                         //         res.json(err);
+            //                         //     })
+            //                         // console.log(response);
+            //                         // console.log("req", response._id);
+            //                         // console.log("req.body.userId: " + req.body.userId);
+            //                         // console.log("optional", optionalUpdate)
+
+
+            //                         .then((data) =>
+            //                     !data
+            //                         ? res.status(404).json({ message: optionalErrorMessage || 'Could not find data with that ID' })
+            //                         : res.json({ message: optionalSuccessMessage, data })
+            //                 )
+            // })
+            //                 .catch ((err) => res.status(500).json(err));
         } else {
             modelAction
                 .then((data) =>
