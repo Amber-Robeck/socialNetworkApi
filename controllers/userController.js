@@ -4,34 +4,17 @@ const gooseHelper = require('goose-helper');
 module.exports = {
     // Get all users
     getUser(req, res) {
-        gooseHelper(req, res, User.find())
-        //     User.find()
-        //         .then((users) => res.json(users))
-        //         .catch((err) => res.status(500).json(err));
+        gooseHelper(req, res, User.find());
     },
 
     // get single user by _id in params
     getSingleUser(req, res) {
         gooseHelper(req, res, User.findOne({ _id: req.params.userId }), 'Could not find user with that ID');
-        // User.findOne({ _id: req.params.userId })
-        //     // .select('-__v')
-        //     .then((user) =>
-        //         !user
-        //             ? res.status(404).json({ message: 'Could not find a user with that ID' })
-        //             : res.json(user)
-        //     )
-        //     .catch((err) => res.status(500).json(err));
     },
 
     //user create post in req.body
     createUser(req, res) {
         gooseHelper(req, res, User.create(req.body), 'Could not create user');
-        // User.create(req.body)
-        //     .then((user) => res.json(user))
-        //     .catch((err) => {
-        //         console.log(err);
-        //         return res.status(500).json(err);
-        //     });
     },
 
 
@@ -68,18 +51,8 @@ module.exports = {
     //update user by _id in params with req.body info
     updateUser(req, res) {
         gooseHelper(req, res, User.findByIdAndUpdate({ _id: req.params.userId }, { $set: req.body }, { runValidators: true, new: true }), 'Could not update user');
-        // User.findOneAndUpdate(
-        //     { _id: req.params.userId },
-        //     { $set: req.body },
-        //     { runValidators: true, new: true }
-        // )
-        //     .then((user) =>
-        //         !user
-        //             ? res.status(404).json({ message: 'Could not find user with this id!' })
-        //             : res.json(user)
-        //     )
-        //     .catch((err) => res.status(500).json(err));
     },
+
     // Add a friend
     // needs to have a friend key in object or always returns error
     addFriend(req, res) {
