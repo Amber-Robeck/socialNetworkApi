@@ -5,6 +5,8 @@ module.exports = {
             modelAction
                 .then((response) => {
                     console.log(response.username)
+
+
                     return optionalUpdate
                 })
                 .then((dbUserData) => {

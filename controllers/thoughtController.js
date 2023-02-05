@@ -2,11 +2,15 @@ const { User, Thought, } = require('../models');
 const { getData } = require('./testController');
 const gooseHelper = require('goose-helper');
 const { response } = require('express');
+const gooseHelper2 = require('../utils/data')
 
 module.exports = {
     // Get all thoughts
+    // getThought(req, res) {
+    //     gooseHelper(req, res, Thought.find());
+    // },
     getThought(req, res) {
-        gooseHelper(req, res, Thought.find());
+        gooseHelper2({ req: req, res: res, modelAction: Thought.find() })
     },
     // get single thought
     getSingleThought(req, res) {
@@ -45,27 +49,27 @@ module.exports = {
         // }
         // )
         // let idValue = response._id.valueOf();
-        getData(req, res, Thought.create(req.body), "failed", "Success", User.findOneAndUpdate(
-            { username: req.body.username },
-            { $push: { thoughts: response._id.valueOf() } },
-            { new: true }
-        ));
+        // getData(req, res, Thought.create(req.body), "failed", "Success", User.findOneAndUpdate(
+        //     { username: req.body.username },
+        //     { $push: { thoughts: response._id.valueOf() } },
+        //     { new: true }
+        // ));
 
-        // Thought.create(req.body)
-        //     .then(function (response) {
-        //         // console.log(response._id.valueOf())
-        //         // console.log(req.body.userId)
-        //         User.findOneAndUpdate(
-        //             { _id: req.body.userId },
-        //             { $addToSet: { thoughts: response._id.valueOf() } },
-        //             { runValidators: true, new: true }
-        //         ).then(() => res.json(response))
-        //     })
+        Thought.create(req.body)
+            .then(function (response) {
+                // console.log(response._id.valueOf())
+                // console.log(req.body.userId)
+                User.findOneAndUpdate(
+                    { _id: req.body.userId },
+                    { $addToSet: { thoughts: response._id.valueOf() } },
+                    { runValidators: true, new: true }
+                ).then(() => res.json(response))
+            })
 
-        //     .catch((err) => {
-        //         console.log(err);
-        //         return res.status(500).json(err);
-        //     });
+            .catch((err) => {
+                console.log(err);
+                return res.status(500).json(err);
+            });
     },
     //update thought through thoughtId in params and set to req.body
     updateThought(req, res) {
